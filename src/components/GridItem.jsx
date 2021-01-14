@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
 const GridItem = (props) => {
@@ -13,7 +14,19 @@ const GridItem = (props) => {
         data-x={colIndex}
         data-y={rowIndex}
         onClick={handleAttack}
-        onKeyPress={handleAttack}
+        role="button"
+        tabIndex="0"
+      />
+    );
+  }
+  if (gridInfo.attacked) {
+    return (
+      <div
+        className="board__cell board__cell--attacked"
+        aria-label="Board Cell"
+        data-x={colIndex}
+        data-y={rowIndex}
+        onClick={handleAttack}
         role="button"
         tabIndex="0"
       />

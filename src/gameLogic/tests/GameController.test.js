@@ -19,15 +19,15 @@ test('GameController defaults the turn to be human', () => {
 
 test('GameController can swap turns', () => {
   const testGame = new GameController();
-  testGame.takeTurn(0, 0, testGame.humanPlayer);
+  testGame.swapTurn();
   const { computerPlayer } = testGame;
   expect(testGame.currentTurn).toBe(computerPlayer);
 });
 
 test('GameController can swap turns multiple times', () => {
   const testGame = new GameController(true);
-  testGame.takeTurn(0, 0, testGame.computerPlayer);
-  testGame.takeTurn(1, 0, testGame.computerPlayer);
+  testGame.swapTurn();
+  testGame.swapTurn();
   const { humanPlayer } = testGame;
   expect(testGame.currentTurn).toBe(humanPlayer);
 });

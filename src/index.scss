@@ -51,6 +51,10 @@ $font-size: 12px;
       background-color: grey;
     }
 
+    &--attacked {
+      background-color: red;
+    }
+
     &:first-child {
       border-left: 1px solid $border-color;
     }

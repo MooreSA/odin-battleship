@@ -3,11 +3,41 @@ import Ship from './Ship';
 class Gameboard {
   constructor() {
     this.grid = [
-      (new Array(5).fill({ attacked: false, ship: null })),
-      (new Array(5).fill({ attacked: false, ship: null })),
-      (new Array(5).fill({ attacked: false, ship: null })),
-      (new Array(5).fill({ attacked: false, ship: null })),
-      (new Array(5).fill({ attacked: false, ship: null })),
+      [
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+      ],
+      [
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+      ],
+      [
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+      ],
+      [
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+      ],
+      [
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+        { attacked: false, ship: null },
+      ],
     ];
     this.allShipsSunk = false;
   }

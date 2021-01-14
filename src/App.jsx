@@ -1,31 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PlayerBoard from './components/PlayerBoard';
-import GameController from './gameLogic/GameController';
+// import Gameboard from './gameLogic/Gameboard';
+import Player from './gameLogic/Player';
 
 function App() {
-  const [controller, setController] = useState(new GameController(true));
+  const [humanPlayer, setHumanPlayer] = useState(new Player());
+  const [computerPlayer, setComputerPlayer] = useState(new Player());
 
-  const attack = (x, y, target) => {
-    const test = new GameController(true);
-    test.takeTurn(x, y, target);
-    console.log(test);
-    setController(controller);
-    // setController((currentController) => {
-    //   currentController.takeTurn(x, y, target);
-    // });
+  const computerAttack = () => {
+    const { x, y } = Player.chooseAttack(humanPlayer);
+    setHumanPlayer(() => {
+      const { player } = humanPlayer.recieveAttack(x, y);
+      return player;
+    });
   };
+
+  const playerAttack = (x, y) => {
+    console.log(x, y);
+    setComputerPlayer(() => {
+      const { player } = computerPlayer.recieveAttack(x, y);
+      return player;
+    });
+  };
+
+  useEffect(() => {
+    computerAttack();
+  }, [computerPlayer]);
 
   return (
     <div className="gamearea">
       <PlayerBoard
-        player={controller.humanPlayer}
-        opponent={controller.computerPlayer}
-        attack={attack}
+        player={humanPlayer}
+        opponent={computerPlayer}
       />
       <PlayerBoard
-        player={controller.computerPlayer}
-        opponent={controller.humanPlayer}
-        attack={attack}
+        player={computerPlayer}
+        opponent={humanPlayer}
+        playerAttack={playerAttack}
       />
     </div>
   );

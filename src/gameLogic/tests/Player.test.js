@@ -24,12 +24,10 @@ test('Player cannot double place a ship', () => {
   expect(() => testPlayer.placeShip(0, 0, 1, 0)).toThrow('Invalid Placement');
 });
 
-test('Player can attack other player', () => {
+test('Player recieve an attack', () => {
   const testPlayer = new Player();
-  const otherPlayer = new Player();
-  expect(Player.attack(0, 0, testPlayer)).toBeTruthy();
+  testPlayer.recieveAttack(0, 0);
   expect(testPlayer.playerBoard.grid[0][0].attacked).toBe(true);
-  expect(otherPlayer.playerBoard.grid[0][0].attacked).toBe(false);
 });
 
 test('AI Player can choose within target grid', () => {
@@ -43,7 +41,8 @@ test('AI Player can choose within target grid', () => {
 
 test('Cannot shoot same space twice', () => {
   const testPlayer = new Player();
-  const { x, y } = Player.chooseAttack(testPlayer);
-  Player.attack(x, y, testPlayer);
-  expect(Player.attack(x, y, testPlayer)).toBeFalsy();
+  testPlayer.recieveAttack(0, 0);
+  const { player, badAttack } = testPlayer.recieveAttack(0, 0);
+  expect(player).toEqual(testPlayer);
+  expect(badAttack).toBe(true);
 });

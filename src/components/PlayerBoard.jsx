@@ -3,22 +3,23 @@ import React from 'react';
 import BoardRow from './BoardRow';
 
 const PlayerBoard = (props) => {
-  const { opponent, player, attack } = props;
-  const { grid } = player.playerBoard;
+  // console.log(props);
+  const { player, playerAttack } = props;
 
   const handleAttack = (event) => {
+    // const x = event.target.dataset;
     const { x, y } = event.target.dataset;
-    attack(x, y, opponent);
+    playerAttack(x, y);
   };
 
   return (
     <div>
       <div className="board__header">Player</div>
       <div className="board">
-        {grid.map((boardRow, rowIndex) => (
+        {player.playerBoard.grid.map((boardRow, rowIndex) => (
           <BoardRow
-            rowInfo={boardRow}
             handleAttack={handleAttack}
+            rowInfo={boardRow}
             rowIndex={rowIndex}
           />
         ))}
