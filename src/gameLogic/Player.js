@@ -1,8 +1,12 @@
 import Gameboard from './Gameboard';
 
 class Player {
-  constructor(prevPlayer = null) {
+  constructor(prevPlayer = null, computerPlayer = false) {
     if (!prevPlayer) {
+      if (computerPlayer) {
+        this.playerBoard = new Gameboard(true);
+        return;
+      }
       this.playerBoard = new Gameboard();
       return;
     }

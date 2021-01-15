@@ -1,0 +1,43 @@
+.board {
+    flex: 1 1 auto;
+    display: grid;
+    height: 320px;
+    grid-template-rows: repeat(5, 1fr);
+    margin: 25px 50px;
+  
+    &__header {
+      font-size: $font-size * 2;
+      text-align: center;
+    }
+  
+    &__row{
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 320px;
+      height: 100%;
+      border-bottom: 1px solid $border-color;
+  
+      &:first-child {
+        border-top: 1px solid $border-color;
+      }
+    }
+  
+    &__cell {
+      background-color: #a5e8db;
+      text-align: center;
+      border-right: 1px solid $border-color;
+  
+      &--ship {
+        background-color: grey;
+      }
+  
+      &--attacked {
+        background-color: red;
+      }
+  
+      &:first-child {
+        border-left: 1px solid $border-color;
+      }
+    }
+  }

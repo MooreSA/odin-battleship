@@ -5,7 +5,7 @@ import Player from './gameLogic/Player';
 
 function App() {
   const [humanPlayer, setHumanPlayer] = useState(new Player());
-  const [computerPlayer, setComputerPlayer] = useState(new Player());
+  const [computerPlayer, setComputerPlayer] = useState(new Player(null, true));
 
   const computerAttack = () => {
     const { x, y } = Player.chooseAttack(humanPlayer);
