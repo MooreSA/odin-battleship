@@ -1,32 +1,42 @@
 import Player from './Player';
+import ComputerPlayer from './ComputerPlayer';
 
 class GameController {
-  constructor(devTest) {
-    this.humanPlayer = new Player();
-    this.computerPlayer = new Player();
-    this.currentTurn = this.humanPlayer;
-
-    if (devTest) {
-      this.computerPlayer.placeShip(0, 0, 2, 0);
-      this.computerPlayer.placeShip(4, 0, 3, 1);
-    }
-  }
-
-  swapTurn() {
-    if (this.currentTurn === this.humanPlayer) {
-      this.currentTurn = this.computerPlayer;
+  constructor(oldController) {
+    if (oldController) {
+      this.humanPlayer = oldController.humanPlayer;
+      this.computerPlayer = oldController.computerPlayer;
       return;
     }
-    this.currentTurn = this.humanPlayer;
+    this.humanPlayer = new Player();
+    this.computerPlayer = new ComputerPlayer();
   }
 
-  takeTurn(x, y, targetPlayer) {
-    if (targetPlayer) {
-      Player.attack(x, y, targetPlayer);
-      this.swapTurn();
-      return this;
+  gameStart() {
+    this.computerPlayer.populateBoard();
+    return { game: new GameController(this) };
+  }
+
+  humanAttack(x, y) {
+    if (this.computerPlayer.recieveAttack(x, y)) {
+      if (this.computerPlayer.playerBoard.allSunk()) {
+        return { error: false, game: new GameController(this), winner: 'player' };
+      }
+      this.computerAttack();
+      if (this.humanPlayer.playerBoard.allSunk()) {
+        return { error: false, game: new GameController(this), winner: 'computer' };
+      }
+      return { error: false, game: new GameController(this) };
     }
-    return this;
+    return { error: true, game: this };
+  }
+
+  computerAttack() {
+    const { x, y } = ComputerPlayer.selectTarget(this.humanPlayer);
+    if (this.humanPlayer.recieveAttack(x, y)) {
+      return { error: false, game: new GameController(this) };
+    }
+    return { error: true, game: this };
   }
 }
 

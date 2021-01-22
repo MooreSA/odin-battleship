@@ -1,74 +1,42 @@
 import { test, expect } from '@jest/globals';
 import GameController from '../GameController';
 import Player from '../Player';
-import Ship from '../Ship';
 
-test.todo('all of them');
+test('Gamecontroller creates players properly', () => {
+  const testGame = new GameController();
 
-// test('Gamecontroller creates players properly', () => {
-//   const testGame = new GameController();
+  expect(testGame.humanPlayer).toEqual(new Player());
+  expect(testGame.computerPlayer).toEqual(new Player());
+});
 
-//   expect(testGame.humanPlayer).toEqual(new Player());
-//   expect(testGame.computerPlayer).toEqual(new Player());
-// });
+test('Human can attack', () => {
+  const testGame = new GameController();
+  const { error, game } = testGame.humanAttack(0, 0);
+  expect(error).toBe(false);
+  expect(game.computerPlayer.playerBoard.grid[0][0].attacked).toBe(true);
+});
 
-// test('GameController defaults the turn to be human', () => {
-//   const testGame = new GameController();
+test('Attacks register errors when invalid', () => {
+  const testGame = new GameController();
+  let { error, game } = testGame.humanAttack(0, 0);
+  expect(error).toBe(false);
+  expect(game.computerPlayer.playerBoard.grid[0][0].attacked).toBe(true);
+  ({ error, game } = game.humanAttack(0, 0));
+  expect(error).toBe(true);
+});
 
-//   const { humanPlayer } = testGame;
-//   expect(testGame.currentTurn).toBe(humanPlayer);
-// });
-
-// test('GameController can swap turns', () => {
-//   const testGame = new GameController();
-//   testGame.swapTurn();
-//   const { computerPlayer } = testGame;
-//   expect(testGame.currentTurn).toBe(computerPlayer);
-// });
-
-// test('GameController can swap turns multiple times', () => {
-//   const testGame = new GameController(true);
-//   testGame.swapTurn();
-//   testGame.swapTurn();
-//   const { humanPlayer } = testGame;
-//   expect(testGame.currentTurn).toBe(humanPlayer);
-// });
-
-// test('GameController can populate players gameboards', () => {
-//   const testGame = new GameController(true);
-
-//   const emptyGrid = {
-//     attacked: false,
-//     ship: null,
-//   };
-//   const shipOne = new Ship(2);
-//   const shipTwo = new Ship(3);
-//   const shipOneGridItem = {
-//     attacked: false,
-//     ship: shipOne,
-//   };
-//   const shipTwoGridItem = {
-//     attacked: false,
-//     ship: shipTwo,
-//   };
-
-//   const { computerPlayer } = testGame;
-//   const { playerBoard } = computerPlayer;
-
-//   expect(playerBoard.grid).toEqual(
-//     [
-//       [{ ...shipOneGridItem, shipPos: 0 }, emptyGrid, emptyGrid, emptyGrid, emptyGrid],
-//       [{ ...shipOneGridItem, shipPos: 1 }, emptyGrid, emptyGrid, emptyGrid, emptyGrid],
-//       [emptyGrid, emptyGrid, emptyGrid, emptyGrid, emptyGrid],
-//       [emptyGrid, emptyGrid, emptyGrid, emptyGrid, emptyGrid],
-//       [
-//         { ...shipTwoGridItem, shipPos: 0 },
-//         { ...shipTwoGridItem, shipPos: 1 },
-//         { ...shipTwoGridItem, shipPos: 2 },
-//         emptyGrid,
-//         emptyGrid,
-//       ],
-//     ],
-//   );
-//   expect();
-// });
+test('Computer attacks after human does', () => {
+  let error = false;
+  let testGame = new GameController();
+  // You need to populate the board first for the AI so you don't win right away
+  ({ game: testGame } = testGame.gameStart());
+  let attackedFlag = false;
+  ({ error, game: testGame } = testGame.humanAttack(0, 0));
+  expect(error).toBe(false);
+  for (let i = 0; i < 10; i += 1) {
+    for (let j = 0; j < 10; j += 1) {
+      if (testGame.humanPlayer.playerBoard.grid[i][j].attacked) attackedFlag = true;
+    }
+  }
+  expect(attackedFlag).toBe(true);
+});

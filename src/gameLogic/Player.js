@@ -1,31 +1,16 @@
 import Gameboard from './Gameboard';
 
 class Player {
-  constructor(prevPlayer = null, computerPlayer = false) {
-    if (!prevPlayer) {
-      if (computerPlayer) {
-        this.playerBoard = new Gameboard(true);
-        return;
-      }
-      this.playerBoard = new Gameboard();
-      return;
-    }
-    this.playerBoard = prevPlayer.playerBoard;
+  constructor(gridLength) {
+    this.playerBoard = new Gameboard(gridLength);
   }
 
-  placeShip(x, y, shipLength, axis) {
-    try {
-      this.playerBoard.placeShip(x, y, shipLength, axis);
-    } catch (error) {
-      throw new Error(error);
-    }
+  placeShip(x, y, shipLength, verticle) {
+    return this.playerBoard.placeShip(x, y, shipLength, verticle);
   }
 
   recieveAttack(x, y) {
-    if (this.playerBoard.receiveAttack(y, x)) {
-      return ({ player: (new Player(this)), badAttack: false });
-    }
-    return { player: this, badAttack: true };
+    return this.playerBoard.receiveAttack(x, y);
   }
 
   // this method is for use by the AI to randomly choose an space

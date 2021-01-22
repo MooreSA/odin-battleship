@@ -20,16 +20,16 @@ test('Ship has a hit tracker', () => {
 });
 
 test('Ship hit method marks position correctly', () => {
-  let testShip = new Ship(3);
-  testShip = testShip.hit(0);
+  const testShip = new Ship(3);
+  testShip.hit(0);
   expect(testShip.hits).toEqual([true, false, false]);
 });
 
 test('Ship can be hit multiple times', () => {
-  let testShip = new Ship(4);
-  testShip = testShip.hit(0);
-  testShip = testShip.hit(1);
-  testShip = testShip.hit(2);
+  const testShip = new Ship(4);
+  testShip.hit(0);
+  testShip.hit(1);
+  testShip.hit(2);
   expect(testShip.hits).toEqual([true, true, true, false]);
 });
 
@@ -42,8 +42,8 @@ test('Ship can be hit in same spot twice', () => {
 });
 
 test('Ship handles hit bad input', () => {
-  let testShip = new Ship(4);
-  testShip = testShip.hit(10);
+  const testShip = new Ship(4);
+  testShip.hit(10);
   expect(testShip.hits).toEqual([false, false, false, false]);
 });
 

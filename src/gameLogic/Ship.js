@@ -1,20 +1,16 @@
 class Ship {
-  constructor(length, ship) {
-    if (ship) {
-      this.length = ship.length;
-      this.hits = ship.hits;
-      return;
-    }
+  constructor(length) {
     this.length = length;
     this.hits = new Array(length).fill(false);
   }
 
+  // returns true if the attack was valid
   hit(position) {
-    if (position > this.length) {
-      return this;
+    if (position > this.hits.length) {
+      return false;
     }
     this.hits[position] = true;
-    return new Ship(null, this);
+    return true;
   }
 
   isSunk() {
