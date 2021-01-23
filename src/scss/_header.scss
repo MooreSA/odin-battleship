@@ -1,0 +1,15 @@
+.header {
+    height: 60px;
+    width: 100%;
+    
+    @include flex-item(row, nowrap);
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: 1px solid $elevation-bg-2;
+    background-color: $elevation-bg-1;
+
+    &__title {
+        font-size: $font-size * 3;
+    }
+}

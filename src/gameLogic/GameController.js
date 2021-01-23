@@ -6,10 +6,12 @@ class GameController {
     if (oldController) {
       this.humanPlayer = oldController.humanPlayer;
       this.computerPlayer = oldController.computerPlayer;
+      this.winner = oldController.winner;
       return;
     }
     this.humanPlayer = new Player();
     this.computerPlayer = new ComputerPlayer();
+    this.winner = null;
   }
 
   gameStart() {
@@ -28,11 +30,13 @@ class GameController {
   humanAttack(x, y) {
     if (this.computerPlayer.recieveAttack(x, y)) {
       if (this.computerPlayer.playerBoard.allSunk()) {
-        return { error: false, game: new GameController(this), winner: 'player' };
+        this.winner = 'Human';
+        return { error: false, game: new GameController(this) };
       }
       this.computerAttack();
       if (this.humanPlayer.playerBoard.allSunk()) {
-        return { error: false, game: new GameController(this), winner: 'computer' };
+        this.winner = 'Computer';
+        return { error: false, game: new GameController(this) };
       }
       return { error: false, game: new GameController(this) };
     }

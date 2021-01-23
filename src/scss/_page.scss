@@ -1,7 +1,5 @@
 .page {
     height: 100%;
-
-    @include flex-item(row, wrap);
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
 }
