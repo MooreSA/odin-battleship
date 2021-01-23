@@ -15,7 +15,7 @@ class ComputerPlayer extends Player {
   }
 
   populateBoard() {
-    const shipLengths = [3, 3, 2, 2];
+    const shipLengths = [5, 4, 3, 3, 2, 2];
     for (let i = 0; i < shipLengths.length; i += 1) {
       this.findPlacement(shipLengths[i]);
     }

@@ -1,12 +1,32 @@
-$border-color: black;
+$border-color: #E0FBFC;
+$background-color: #E0FBFC;
+$elevation-bg-1: #98C1D9;
+$elevation-bg-2: #3D5A80;
+
+$hit-color: #B53C17;
+
+$font-color: #FFF;
 $font-size: 12px;
 
-html, body {
+@mixin flex-item($direction, $wrap) {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: $direction $wrap;
+}
+
+html, body, #root {
   height: 100%;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $font-color;
+}
+
+body {
+  background-color: $background-color;
+}

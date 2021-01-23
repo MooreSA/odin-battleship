@@ -17,6 +17,14 @@ class GameController {
     return { game: new GameController(this) };
   }
 
+  humanPlace(x, y, shipLength, verticle) {
+    // humanPlayer.placeShip() returns a boolean value if it's a good placement
+    if (this.humanPlayer.placeShip(x, y, shipLength, verticle)) {
+      return { error: false, game: new GameController(this) };
+    }
+    return { error: true, game: this };
+  }
+
   humanAttack(x, y) {
     if (this.computerPlayer.recieveAttack(x, y)) {
       if (this.computerPlayer.playerBoard.allSunk()) {

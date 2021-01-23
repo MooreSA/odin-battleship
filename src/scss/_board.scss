@@ -1,43 +1,40 @@
 .board {
-    flex: 1 1 auto;
-    display: grid;
-    height: 320px;
-    grid-template-rows: repeat(5, 1fr);
-    margin: 25px 50px;
-  
-    &__header {
-      font-size: $font-size * 2;
-      text-align: center;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__row {
+        display: flex;
+        flex-flow: row nowrap;
     }
-  
-    &__row{
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      width: 320px;
-      height: 100%;
-      border-bottom: 1px solid $border-color;
-  
-      &:first-child {
-        border-top: 1px solid $border-color;
-      }
-    }
-  
+
     &__cell {
-      background-color: #a5e8db;
-      text-align: center;
-      border-right: 1px solid $border-color;
-  
-      &--ship {
-        background-color: grey;
-      }
-  
-      &--attacked {
-        background-color: red;
-      }
-  
-      &:first-child {
+        background-color: $elevation-bg-2;
+        // border-color: $background-color;
+
+        height: 30px;
+        width: 30px;
+
+        border-top: 1px solid $border-color;
         border-left: 1px solid $border-color;
-      }
+
+        &:last-child {
+            border-right: 1px solid $border-color;
+        }
+
+        &--ship {
+            background-color: grey;
+        }
+
+        &--hit {
+            background-color: red;
+        }
+
+        &--miss {
+            background-color: mix($elevation-bg-2, #FFF);
+        }
     }
-  }
+
+    &:last-child {
+        border-bottom: 1px solid $border-color;
+    }
+}   

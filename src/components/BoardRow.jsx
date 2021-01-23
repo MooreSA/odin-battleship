@@ -1,17 +1,22 @@
 import React from 'react';
-import GridItem from './GridItem';
+import Cell from './Cell';
 
 const BoardRow = (props) => {
-  const { rowInfo, handleAttack, rowIndex } = props;
+  const {
+    handleEvent,
+    rowInfo,
+    rowIndex,
+  } = props;
 
   return (
     <div className="board__row">
       {rowInfo.map((gridItem, colIndex) => (
-        <GridItem
+        <Cell
+          handleEvent={handleEvent}
           gridInfo={gridItem}
-          handleAttack={handleAttack}
           rowIndex={rowIndex}
           colIndex={colIndex}
+          key={Math.random()}
         />
       ))}
     </div>

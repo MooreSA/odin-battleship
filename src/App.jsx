@@ -1,41 +1,59 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
+import GameController from './gameLogic/GameController';
 import PlayerBoard from './components/PlayerBoard';
-// import Gameboard from './gameLogic/Gameboard';
-import Player from './gameLogic/Player';
 
 function App() {
-  const [humanPlayer, setHumanPlayer] = useState(new Player());
-  const [computerPlayer, setComputerPlayer] = useState(new Player(null, true));
+  const [gameController, setGameController] = useState(new GameController());
+  const [shipsToPlace, setShipsToPlace] = useState([5, 4, 3, 3, 2, 2]);
 
-  const computerAttack = () => {
-    const { x, y } = Player.chooseAttack(humanPlayer);
-    setHumanPlayer(() => {
-      const { player } = humanPlayer.recieveAttack(x, y);
-      return player;
+  const placeShip = (x, y) => {
+    const xCord = parseInt(x, 10);
+    const yCord = parseInt(y, 10);
+    const shipLength = shipsToPlace[0];
+    setGameController(() => {
+      const { error, game: newGame } = gameController.humanPlace(xCord, yCord, shipLength, true);
+      if (error) {
+        return gameController;
+      }
+      setShipsToPlace(() => {
+        shipsToPlace.shift();
+        return shipsToPlace;
+      });
+      return newGame;
     });
   };
 
   const playerAttack = (x, y) => {
-    console.log(x, y);
-    setComputerPlayer(() => {
-      const { player } = computerPlayer.recieveAttack(x, y);
-      return player;
+    if (shipsToPlace.length !== 0) return;
+    setGameController(() => {
+      const { error, game: newGame } = gameController.humanAttack(x, y);
+      if (error) return gameController;
+      return newGame;
     });
   };
 
+  // This is similar to componentDidMount
+  // Use this to set game up
   useEffect(() => {
-    computerAttack();
-  }, [computerPlayer]);
+    // Have the computer player set up their board
+    setGameController((oldGame) => {
+      const { game } = oldGame.gameStart();
+      return game;
+    });
+  }, []);
 
   return (
-    <div className="gamearea">
+    <div className="page">
+      {/* TODO */}
+      {/* <Header /> */}
       <PlayerBoard
-        player={humanPlayer}
-        opponent={computerPlayer}
+        player={gameController.humanPlayer}
+        placeShip={placeShip}
       />
       <PlayerBoard
-        player={computerPlayer}
-        opponent={humanPlayer}
+        player={gameController.computerPlayer}
         playerAttack={playerAttack}
       />
     </div>

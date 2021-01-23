@@ -1,0 +1,11 @@
+.player-area {
+    margin: auto 5px ;
+    border-radius: 5px;
+    padding: 15px;
+
+    background-color: $elevation-bg-1;
+
+    &__header {
+        text-align: center;        
+    }
+}
