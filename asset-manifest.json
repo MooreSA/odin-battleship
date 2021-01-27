@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/odin-battleship/static/css/main.e1afce82.chunk.css",
+    "main.js": "/odin-battleship/static/js/main.b2b657ee.chunk.js",
+    "main.js.map": "/odin-battleship/static/js/main.b2b657ee.chunk.js.map",
+    "runtime-main.js": "/odin-battleship/static/js/runtime-main.ec5893b4.js",
+    "runtime-main.js.map": "/odin-battleship/static/js/runtime-main.ec5893b4.js.map",
+    "static/js/2.13b09b8b.chunk.js": "/odin-battleship/static/js/2.13b09b8b.chunk.js",
+    "static/js/2.13b09b8b.chunk.js.map": "/odin-battleship/static/js/2.13b09b8b.chunk.js.map",
+    "index.html": "/odin-battleship/index.html",
+    "static/css/main.e1afce82.chunk.css.map": "/odin-battleship/static/css/main.e1afce82.chunk.css.map",
+    "static/js/2.13b09b8b.chunk.js.LICENSE.txt": "/odin-battleship/static/js/2.13b09b8b.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/odin-battleship/static/media/NunitoSans-Regular.87d92665.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ec5893b4.js",
+    "static/js/2.13b09b8b.chunk.js",
+    "static/css/main.e1afce82.chunk.css",
+    "static/js/main.b2b657ee.chunk.js"
+  ]
+}
