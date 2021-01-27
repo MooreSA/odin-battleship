@@ -7,6 +7,15 @@
 
     &__header {
         font-size: $font-size * 2;
-        text-decoration: underline;
+        border-bottom: 1px solid $color-dark;
+    }
+    &__length, &__orientation, &__swap-btn {
+        font-size: $font-size * 1.5;
+    }
+
+    &__swap-btn {
+        padding: 10px;
+        border: 0;
+        @include btn($color-accent-light, $color-base);
     }
 }

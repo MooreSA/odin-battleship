@@ -7,14 +7,15 @@ const Cell = (props) => {
     gridInfo,
     colIndex,
     rowIndex,
+    playerFlag,
   } = props;
 
   let className = 'board__cell';
 
   if (gridInfo.ship && gridInfo.attacked) className += ' board__cell--hit';
   else {
-    if (gridInfo.ship) className += (' board__cell--ship');
     if (gridInfo.attacked) className += (' board__cell--miss');
+    if (gridInfo.ship && playerFlag) className += (' board__cell--ship');
   }
 
   return (

@@ -11,6 +11,9 @@ const PlayerBoard = (props) => {
     placeShip,
   } = props;
 
+  let playerFlag = false;
+  if (placeShip) playerFlag = true;
+
   const handleEvent = (event) => {
     if (placeShip) {
       const { x, y } = event.target.dataset;
@@ -21,6 +24,8 @@ const PlayerBoard = (props) => {
     }
   };
 
+  if (placeShip) playerFlag = true;
+
   return (
     <div className="player-area">
       <div className="player-area__header">Player</div>
@@ -28,6 +33,7 @@ const PlayerBoard = (props) => {
         {player.playerBoard.grid.map((boardRow, rowIndex) => (
           <BoardRow
             handleEvent={handleEvent}
+            playerFlag={playerFlag}
             rowInfo={boardRow}
             rowIndex={rowIndex}
             key={Math.random()}

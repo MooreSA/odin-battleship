@@ -6,6 +6,7 @@ import GameController from './gameLogic/GameController';
 import PlayerBoard from './components/PlayerBoard';
 import NextShipInfo from './components/NextShipInfo';
 import Modal from './components/Modal';
+import Footer from './components/Footer';
 
 function App() {
   const [gameController, setGameController] = useState(new GameController());
@@ -99,6 +100,7 @@ function App() {
           playerAttack={playerAttack}
         />
       </div>
+      <Footer />
     </div>
   );
 }

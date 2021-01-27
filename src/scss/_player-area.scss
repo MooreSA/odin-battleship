@@ -1,11 +1,14 @@
 .player-area {
-    margin: auto 5px ;
+    margin: 10px 20px;
     border-radius: 5px;
     padding: 15px;
 
-    background-color: $elevation-bg-1;
+    // background-color: $color-brand;
+    background-color: $color-dark;
 
     &__header {
         text-align: center;        
+        font-size: $font-size * 1.5;
+        color: $color-base;
     }
 }

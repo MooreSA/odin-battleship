@@ -6,12 +6,14 @@ const BoardRow = (props) => {
     handleEvent,
     rowInfo,
     rowIndex,
+    playerFlag,
   } = props;
 
   return (
     <div className="board__row">
       {rowInfo.map((gridItem, colIndex) => (
         <Cell
+          playerFlag={playerFlag}
           handleEvent={handleEvent}
           gridInfo={gridItem}
           rowIndex={rowIndex}

@@ -12,9 +12,9 @@
     &__content {
         margin: 15% auto;
         border-radius: 10px;
-        padding: 30px 20px;
+        padding: 50px 20px;
         width: 30%;
-        background-color: $elevation-bg-2;
+        background-color: $color-dark;
 
         @include flex-item(column, nowrap);
         align-items: center;
@@ -22,16 +22,13 @@
 
     &__winner {
         font-size: $font-size * 2;
+        color: $color-base;
     }
 
     &__resetbtn {
-        padding: 10px;
-        outline: none;
-        border: 0;
-        border-radius: 5px;
-
-        background-color: $elevation-bg-1;
-
+        padding: 15px 30px;
+        @include btn($color-accent-light, $color-dark);
+        
         &:active {
             box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.8)
         }
